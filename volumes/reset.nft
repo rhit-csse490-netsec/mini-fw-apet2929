@@ -1,0 +1,3 @@
+#!/usr/sbin/nft -f
+
+delete table netsec_tbl

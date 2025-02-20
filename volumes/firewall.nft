@@ -1,0 +1,18 @@
+#!/usr/sbin/nft -f
+
+add table ip netsec_tbl
+
+# create our first chain for incoming traffic
+add chain netsec_tbl netsec_in { type filter hook prerouting priority 0 ; policy drop ; comment "our first netsec chain" ; }
+# add chain netsec_tbl netsec_out { type filter hook output priority 0 ; policy drop ; comment "our first netsec chain" ; }
+# add chain netsec_tbl netsec_ssh_in { type filter hook input priority 0 ; policy drop ; comment "our first netsec chain" ; }
+# add chain netsec_tbl netsec_out { type filter hook output priority 0 ; policy drop ; comment "our first netsec chain" ; }
+
+
+# add rule netsec_tbl netsec_in ip saddr $server_ip icmp type echo-request counter drop
+add rule netsec_tbl netsec_in tcp dport 22 counter accept
+add rule netsec_tbl netsec_in tcp sport 22 counter accept
+add rule netsec_tbl netsec_in tcp dport 23 counter accept
+add rule netsec_tbl netsec_in tcp sport 23 counter accept
+add rule netsec_tbl netsec_in tcp dport 80 counter accept
+add rule netsec_tbl netsec_in tcp sport 80 counter accept
