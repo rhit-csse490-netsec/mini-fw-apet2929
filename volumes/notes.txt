@@ -1,0 +1,9 @@
+https://hackertarget.com/nmap-cheatsheet-a-quick-reference-guide/
+nmap -sT server
+(scans for tcp services on server)
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+23/tcp open  telnet
+80/tcp open  htt
+
